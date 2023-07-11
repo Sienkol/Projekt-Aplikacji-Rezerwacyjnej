@@ -14,13 +14,27 @@ mysql = MySQL(app)
 ##Strona główna
 @app.route("/")
 def hello():
-    return "Witaj, świecie!"
+    return render_template("base.html")
+
+
+@app.route("/glowna")
+def glowna():
+    return render_template("glowna.html")
+
+
+@app.route("/tabele")
+def tabele():
+    return render_template("tabele.html")
 
 
 ##Strona do wczytywania danych z mysql
-@app.route("/sql")
+@app.route("/orders")
 def sikuel():
     cursor = mysql.connect.cursor()
     cursor.execute("SELECT * FROM orders")
     orders = cursor.fetchall()
     return render_template("orders.html", orders=orders)
+
+
+if __name__ == "__main__":
+    app.run(debug=True)
