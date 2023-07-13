@@ -7,7 +7,7 @@ app = Flask(__name__)
 app.config["MYSQL_HOST"] = "localhost"
 app.config["MYSQL_USER"] = "root"
 app.config["MYSQL_PASSWORD"] = "6133"
-app.config["MYSQL_DB"] = "sql_store"
+app.config["MYSQL_DB"] = "rooms"
 mysql = MySQL(app)
 
 
@@ -17,11 +17,13 @@ def hello():
     return render_template("base.html")
 
 
+##Strona glowna
 @app.route("/glowna")
 def glowna():
     return render_template("glowna.html")
 
 
+##Strona z bazami danych SQL
 @app.route("/tabele")
 def tabele():
     return render_template("tabele.html")
@@ -31,7 +33,7 @@ def tabele():
 @app.route("/orders")
 def sikuel():
     cursor = mysql.connect.cursor()
-    cursor.execute("SELECT * FROM orders")
+    cursor.execute("SELECT * FROM rooms")
     orders = cursor.fetchall()
     return render_template("orders.html", orders=orders)
 
