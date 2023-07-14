@@ -29,24 +29,40 @@ def tabele():
     return render_template("tabele.html")
 
 
-@app.route("/tabele/BazaPokoi")
+@app.route("/BazaPokoi")
 def baza_pokoi():
-    return render_template("baza_pokoi.html")
+    cursor = mysql.connect.cursor()
+    cursor.execute("SELECT * FROM rooms")
+    baza_pokoi = cursor.fetchall()
+    return render_template("baza_pokoi.html", baza_pokoi=baza_pokoi)
 
 
-@app.route("/tabele/ArchiwumRezerwacji")
+@app.route("/ArchiwumRezerwacji")
 def archiwum_rezerwacji():
-    return render_template("archiwum_rezerwacji.html")
+    cursor = mysql.connect.cursor()
+    cursor.execute("SELECT * FROM previous_reservations")
+    archiwum_rezerwacji = cursor.fetchall()
+    return render_template(
+        "archiwum_rezerwacji.html", archiwum_rezerwacji=archiwum_rezerwacji
+    )
 
 
-@app.route("/tabele/BazaGosci")
+@app.route("/BazaGosci")
 def baza_gosci():
-    return render_template("baza_gosci.html")
+    cursor = mysql.connect.cursor()
+    cursor.execute("SELECT * FROM guests")
+    baza_gosci = cursor.fetchall()
+    return render_template("baza_gosci.html", baza_gosci=baza_gosci)
 
 
-@app.route("/tabele/ObecneRezerwacje")
+@app.route("/ObecneRezerwacje")
 def obecne_rezerwacje():
-    return render_template("obecne_rezerwacje.html")
+    cursor = mysql.connect.cursor()
+    cursor.execute("SELECT * FROM reservations")
+    obecne_rezerwacje = cursor.fetchall()
+    return render_template(
+        "obecne_rezerwacje.html", obecne_rezerwacje=obecne_rezerwacje
+    )
 
 
 ##Koniec stron z danymi
@@ -55,10 +71,7 @@ def obecne_rezerwacje():
 ##Strona do wczytywania danych z mysql
 @app.route("/orders")
 def sikuel():
-    cursor = mysql.connect.cursor()
-    cursor.execute("SELECT * FROM rooms")
-    orders = cursor.fetchall()
-    return render_template("orders.html", orders=orders)
+    return render_template("orders.html")
 
 
 if __name__ == "__main__":

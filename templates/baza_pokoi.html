@@ -1,4 +1,33 @@
 {% extends "base.html" %}
 {% block title %}Baza Pokoi{% endblock %}
 {% block content %}
+<table>
+    <style>
+        table {
+            border-collapse: collapse;
+        }
+
+        th,
+        td {
+            border: 1px solid black;
+            padding: 8px;
+        }
+    </style>
+    <thead>
+        <tr>
+            <th>Numer Pokoju</th>
+            <th>Piętro</th>
+            <th>Ile Osób</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for room in baza_pokoi %}
+        <tr>
+            <td>{{ room[0] }}</td>
+            <td>{{ room[1] }}</td>
+            <td>{{ room[2] }}</td>
+        </tr>
+        {% endfor %}
+</table>
+
 {% endblock %}

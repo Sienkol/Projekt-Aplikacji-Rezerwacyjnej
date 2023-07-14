@@ -1,4 +1,36 @@
 {% extends "base.html" %}
 {% block title %}Baza Gości{% endblock %}
 {% block content %}
+<table>
+    <style>
+        table {
+            border-collapse: collapse;
+        }
+
+        th,
+        td {
+            border: 1px solid black;
+            padding: 8px;
+        }
+    </style>
+    <thead>
+        <tr>
+            <th>Numer Gościa</th>
+            <th>Imię</th>
+            <th>Nazwisko</th>
+            <th>Ilość Wizyt</th>
+            <th>Data Urodzenia</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for guest in baza_gosci %}
+        <tr>
+            <td>{{ guest[0] }}</td>
+            <td>{{ guest[1] }}</td>
+            <td>{{ guest[2] }}</td>
+            <td>{{ guest[3] }}</td>
+            <td>{{ guest[4] }}</td>
+        </tr>
+        {% endfor %}
+</table>
 {% endblock %}

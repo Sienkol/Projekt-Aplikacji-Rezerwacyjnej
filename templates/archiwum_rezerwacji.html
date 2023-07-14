@@ -1,4 +1,38 @@
 {% extends "base.html" %}
 {% block title %}Archiwum Rezerwacji{% endblock %}
 {% block content %}
+<table>
+    <style>
+        table {
+            border-collapse: collapse;
+        }
+
+        th,
+        td {
+            border: 1px solid black;
+            padding: 8px;
+        }
+    </style>
+    <thead>
+        <tr>
+            <th>Numer Rezerwacji</th>
+            <th>Numer Pokoju</th>
+            <th>Numer Gościa</th>
+            <th>Data Przyjazdu</th>
+            <th>Data Odjazdu</th>
+            <th>Zrealizowana</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for reservation in archiwum_rezerwacji %}
+        <tr>
+            <td>{{ reservation[0] }}</td>
+            <td>{{ reservation[1] }}</td>
+            <td>{{ reservation[2] }}</td>
+            <td>{{ reservation[3] }}</td>
+            <td>{{ reservation[4] }}</td>
+            <td>{{ reservation[5] }}</td>
+        </tr>
+        {% endfor %}
+</table>
 {% endblock %}
