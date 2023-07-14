@@ -1,15 +1,12 @@
 {% extends "base.html" %}
-{% block title %}Home Page{% endblock %}
+{% block title %}Tabele{% endblock %}
 {% block content %}
 <div class="list-group">
-    <a href="#" class="list-group-item list-group-item-action active">
-        Baza Gości
-    </a>
-    <a href="#" class="list-group-item list-group-item-action">Baza Pokoi</a>
-    <a href="#" class="list-group-item list-group-item-action">Baza Rezerwacji</a>
-    <a href="#" class="list-group-item list-group-item-action">Wolne Pokoje</a>
-    <a href="#" class="list-group-item list-group-item-action" tabindex="-1" aria-disabled="true">Obecne
+    <a href="tabele/BazaPokoi" class="list-group-item list-group-item-action">Baza Pokoi</a>
+    <a href="tabele/ArchiwumRezerwacji" class="list-group-item list-group-item-action">Archiwum Rezerwacji</a>
+    <a href="tabele/BazaGosci" class="list-group-item list-group-item-action">Baza Gości</a>
+    <a href="tabele/ObecneRezerwacje" class="list-group-item list-group-item-action" tabindex="-1"
+        aria-disabled="true">Obecne
         Rezerwacje</a>
 </div>
 {% endblock %}
-{% set active_page = 'tabele' %}
