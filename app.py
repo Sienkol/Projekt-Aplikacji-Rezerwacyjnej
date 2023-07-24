@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, url_for
 from flask_mysqldb import MySQL
 
 app = Flask(__name__)
@@ -69,8 +69,23 @@ def obecne_rezerwacje():
 
 
 ##Strona do wczytywania danych z mysql
-@app.route("/orders")
+@app.route("/orders", methods=["POST", "GET"])
 def sikuel():
+    if request.method == "POST":
+        name = request.form["name"]
+        surname = request.form["surname"]
+        birth_date = request.form["birth_date"]
+        arrival_date = request.form["arrival_date"]
+        departure_date = request.form["departure_date"]
+        email = request.form["email"]
+        room_number = request.form["room_number"]
+        cursor = mysql.connect.cursor()
+        cursor.execute(
+            """INSERT INTO guests (first_name, last_name, number_of_visits, birth_date, email) VALUES (%s, %s, 1, %s, %s)""",
+            (name, surname, birth_date, email),
+        )
+        mysql.connection.commit()
+        cursor.close()
     return render_template("orders.html")
 
 

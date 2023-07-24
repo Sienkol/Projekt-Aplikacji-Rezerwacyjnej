@@ -1,63 +1,68 @@
 {% extends "base.html" %}
 {% block title %}Home Page{% endblock %}
 {% block content %}
+<form action="{{url_for('sikuel')}}" method="POST">
 
-<div class="input-group mb-3">
-    <span class="input-group-text" id="basic-addon1">Imię</span>
-    <input type="text" class="form-control" placeholder="" aria-label="Imię" aria-describedby="basic-addon1">
-</div>
+    <div class="input-group mb-3 ">
+        <span class="input-group-text" id="basic-addon1">Imię</span>
+        <input type="text" name="name" class="form-control" placeholder="" aria-label="Imię"
+            aria-describedby="basic-addon1">
+    </div>
 
-<div class="input-group mb-3">
-    <span class="input-group-text" id="basic-addon1">Nazwisko</span>
-    <input type="text" class="form-control" placeholder="" aria-label="Nazwisko" aria-describedby="basic-addon1">
-</div>
 
-<div class="input-group mb-3">
-    <span class="input-group-text" id="basic-addon1">Data Urodzenia</span>
-    <input type="date" data-format="YYYY-MM-DD" class="form-control" placeholder="Data Urodzenia"
-        aria-label="Data Urodzenia" aria-describedby="basic-addon1">
-</div>
+    <div class="input-group mb-3">
+        <span class="input-group-text" id="basic-addon1">Nazwisko</span>
+        <input type="text" name="surname" class="form-control" placeholder="" aria-label="Nazwisko"
+            aria-describedby="basic-addon1">
+    </div>
 
-<div class="input-group mb-3">
-    <span class="input-group-text" id="basic-addon1">Data Przyjazdu</span>
-    <input type="date" data-format="YYYY-MM-DD" class="form-control" placeholder="Data Przyjazdu"
-        aria-label="Data Przyjazdu" aria-describedby="basic-addon1">
-</div>
+    <div class="input-group mb-3">
+        <span class="input-group-text" id="basic-addon1">Data Urodzenia</span>
+        <input type="date" name="birth_date" data-format="YYYY-MM-DD" class="form-control" placeholder="Data Urodzenia"
+            aria-label="Data Urodzenia" aria-describedby="basic-addon1">
+    </div>
 
-<div class="input-group mb-3">
-    <span class="input-group-text" id="basic-addon1">Data Odjazdu</span>
-    <input type="date" data-format="YYYY-MM-DD" class="form-control" placeholder="Data Odjazdu"
-        aria-label="Data Odjazdu" aria-describedby="basic-addon1">
-</div>
+    <div class="input-group mb-3">
+        <span class="input-group-text" id="basic-addon1">Data Przyjazdu</span>
+        <input type="date" name="arrival_date" data-format="YYYY-MM-DD" class="form-control"
+            placeholder="Data Przyjazdu" aria-label="Data Przyjazdu" aria-describedby="basic-addon1">
+    </div>
 
-<div class="input-group mb-3">
-    <span class="input-group-text" id="basic-addon1">Email</span>
-    <input type="text" class="form-control" placeholder="" aria-label="Nazwisko" aria-describedby="basic-addon1">
-</div>
+    <div class="input-group mb-3">
+        <span class="input-group-text" id="basic-addon1">Data Odjazdu</span>
+        <input type="date" name="departure_date" data-format="YYYY-MM-DD" class="form-control"
+            placeholder="Data Odjazdu" aria-label="Data Odjazdu" aria-describedby="basic-addon1">
+    </div>
 
-<div class="input-group mb-3">
-    <span class="input-group-text" id="addon-wrapping">Wybierz Pokój</span>
-    <select name="room_number">
-        <option value="100">100</option>
-        <option value="101">101</option>
-        <option value="102">102</option>
-        <option value="103">103</option>
-        <option value="104">104</option>
-        <option value="200">200</option>
-        <option value="201">201</option>
-        <option value="202">202</option>
-        <option value="203">203</option>
-        <option value="204">204</option>
-        <option value="300">300</option>
-        <option value="301">301</option>
-        <option value="302">302</option>
-    </select>
-</div>
+    <div class="input-group mb-3">
+        <span class="input-group-text" id="basic-addon1">Email</span>
+        <input type="text" name="email" class="form-control" placeholder="" aria-label="Nazwisko"
+            aria-describedby="basic-addon1">
+    </div>
 
-<div class="input-group mb-3">
-    <button type="button" class="btn btn-success btn-block mt-5 mb-0"
-        style="position: fixed; bottom: 0;">Zatwierdź</button>
-</div>
+    <div class="input-group mb-3">
+        <span class="input-group-text" id="addon-wrapping">Wybierz Pokój</span>
+        <select name="room_number">
+            <option value="100">100</option>
+            <option value="101">101</option>
+            <option value="102">102</option>
+            <option value="103">103</option>
+            <option value="104">104</option>
+            <option value="200">200</option>
+            <option value="201">201</option>
+            <option value="202">202</option>
+            <option value="203">203</option>
+            <option value="204">204</option>
+            <option value="300">300</option>
+            <option value="301">301</option>
+            <option value="302">302</option>
+        </select>
+    </div>
 
+    <div class="input-group mb-3">
+        <button type="submit" class="btn btn-primary btn-block mt-5 mb-0"
+            style="position: fixed; bottom: 0;">Zatwierdź</button>
+    </div>
+</form>
 {% endblock %}
 {% set active_page = 'orders' %}
