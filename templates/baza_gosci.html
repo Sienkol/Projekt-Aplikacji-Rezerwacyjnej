@@ -26,12 +26,12 @@
     <tbody>
         {% for guest in baza_gosci %}
         <tr>
-            <td>{{ guest[0] }}</td>
-            <td>{{ guest[1] }}</td>
-            <td>{{ guest[2] }}</td>
-            <td>{{ guest[3] }}</td>
-            <td>{{ guest[4] }}</td>
-            <td>{{ guest[5] }}</td>
+            <td>{{ guest.guest_id }}</td>
+            <td>{{ guest.first_name }}</td>
+            <td>{{ guest.last_name }}</td>
+            <td>{{ guest.number_of_visits }}</td>
+            <td>{{ guest.birth_date }}</td>
+            <td>{{ guest.email }}</td>
         </tr>
         {% endfor %}
 </table>

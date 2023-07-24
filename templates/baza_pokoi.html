@@ -23,9 +23,9 @@
     <tbody>
         {% for room in baza_pokoi %}
         <tr>
-            <td>{{ room[0] }}</td>
-            <td>{{ room[1] }}</td>
-            <td>{{ room[2] }}</td>
+            <td>{{ room.room_number }}</td>
+            <td>{{ room.floor }}</td>
+            <td>{{ room.guests_capacity }}</td>
         </tr>
         {% endfor %}
 </table>

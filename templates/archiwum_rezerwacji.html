@@ -26,12 +26,12 @@
     <tbody>
         {% for reservation in archiwum_rezerwacji %}
         <tr>
-            <td>{{ reservation[0] }}</td>
-            <td>{{ reservation[1] }}</td>
-            <td>{{ reservation[2] }}</td>
-            <td>{{ reservation[3] }}</td>
-            <td>{{ reservation[4] }}</td>
-            <td>{{ reservation[5] }}</td>
+            <td>{{ reservation.reservation_number }}</td>
+            <td>{{ reservation.room_number }}</td>
+            <td>{{ reservation.guest_id }}</td>
+            <td>{{ reservation.arrival_date }}</td>
+            <td>{{ reservation.departure_date }}</td>
+            <td>{{ reservation.completed }}</td>
         </tr>
         {% endfor %}
 </table>
