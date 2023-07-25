@@ -19,9 +19,7 @@
             <th>Numer Pokoju</th>
             <th>Numer Gościa</th>
             <th>Data Przyjazdu</th>
-            <th>Data Odjazdu</th>
-            <th>Opłacona</th>
-        </tr>
+            <th>Data Odjazdu</th </tr>
     </thead>
     <tbody>
         {% for reservation in obecne_rezerwacje %}
@@ -31,7 +29,6 @@
             <td>{{ reservation.guest_id }}</td>
             <td>{{ reservation.arrival_date }}</td>
             <td>{{ reservation.departure_date }}</td>
-            <td>{{ reservation.paid }}</td>
         </tr>
         {% endfor %}
 </table>

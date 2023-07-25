@@ -21,7 +21,6 @@ class previous_reservations(db.Model):
     guest_id = db.Column(db.Integer, nullable=False)
     arrival_date = db.Column(db.Date, nullable=False)
     departure_date = db.Column(db.Date, nullable=False)
-    completed = db.Column(db.String(50), nullable=False)
 
 
 class guests(db.Model):
@@ -39,7 +38,6 @@ class reservations(db.Model):
     guest_id = db.Column(db.Integer, nullable=False)
     arrival_date = db.Column(db.Date, nullable=False)
     departure_date = db.Column(db.Date, nullable=False)
-    paid = db.Column(db.String(50), nullable=False)
 
 
 ##Strona główna
@@ -83,6 +81,23 @@ def baza_gosci():
 @app.route("/ObecneRezerwacje")
 def obecne_rezerwacje():
     obecne_rezerwacje = reservations.query.all()
+    # Checking if date of reservation is less or equal today, if yes than record is deleted from reservations and added to previous_reservations
+    dzisiaj = date.today()
+    reservations_to_move = reservations.query.filter(
+        reservations.departure_date < dzisiaj
+    ).all()
+
+    for reservation in reservations_to_move:
+        previous_reservation = previous_reservations(
+            reservation_number=reservation.reservation_number,
+            guest_id=reservation.guest_id,
+            arrival_date=reservation.arrival_date,
+            departure_date=reservation.departure_date,
+            room_number=reservation.room_number,
+        )
+        db.session.add(previous_reservation)
+        db.session.commit()
+
     return render_template(
         "obecne_rezerwacje.html", obecne_rezerwacje=obecne_rezerwacje
     )
@@ -111,6 +126,14 @@ def sikuel():
             email=email,
         )
         db.session.add(new_guest)
+        db.session.commit()
+        new_reservation = reservations(
+            room_number=room_number,
+            arrival_date=arrival_date,
+            departure_date=departure_date,
+            guest_id=new_guest.guest_id,
+        )
+        db.session.add(new_reservation)
         db.session.commit()
 
     return render_template("orders.html")
