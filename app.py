@@ -96,7 +96,8 @@ def obecne_rezerwacje():
             room_number=reservation.room_number,
         )
         db.session.add(previous_reservation)
-        db.session.commit()
+    reservations.query.filter(reservations.departure_date < dzisiaj).delete()
+    db.session.commit()
 
     return render_template(
         "obecne_rezerwacje.html", obecne_rezerwacje=obecne_rezerwacje
@@ -117,7 +118,6 @@ def sikuel():
         departure_date = request.form["departure_date"]
         email = request.form["email"]
         room_number = request.form["room_number"]
-
         # Create and add the new Guest to the database
         new_guest = guests(
             first_name=name,
@@ -133,6 +133,7 @@ def sikuel():
             departure_date=departure_date,
             guest_id=new_guest.guest_id,
         )
+
         db.session.add(new_reservation)
         db.session.commit()
 

@@ -3,46 +3,45 @@
 {% block content %}
 <form action="{{url_for('sikuel')}}" method="POST">
 
-    <div class="input-group mb-3 ">
-        <span class="input-group-text" id="basic-addon1">Imię</span>
-        <input type="text" name="name" class="form-control" placeholder="" aria-label="Imię"
-            aria-describedby="basic-addon1">
-    </div>
-
-
     <div class="input-group mb-3">
-        <span class="input-group-text" id="basic-addon1">Nazwisko</span>
-        <input type="text" name="surname" class="form-control" placeholder="" aria-label="Nazwisko"
+        <span class="input-group-text bg-dark text-light" id="basic-addon1">Imię</span>
+        <input type="text" name="name" class="form-control bg-dark text-light" placeholder="" aria-label="Imię"
             aria-describedby="basic-addon1">
     </div>
 
     <div class="input-group mb-3">
-        <span class="input-group-text" id="basic-addon1">Data Urodzenia</span>
-        <input type="date" name="birth_date" data-format="YYYY-MM-DD" class="form-control" placeholder="Data Urodzenia"
-            aria-label="Data Urodzenia" aria-describedby="basic-addon1">
+        <span class="input-group-text bg-dark text-light" id="basic-addon1">Nazwisko</span>
+        <input type="text" name="surname" class="form-control bg-dark text-light" placeholder="" aria-label="Nazwisko"
+            aria-describedby="basic-addon1">
     </div>
 
     <div class="input-group mb-3">
-        <span class="input-group-text" id="basic-addon1">Data Przyjazdu</span>
-        <input type="date" name="arrival_date" data-format="YYYY-MM-DD" class="form-control"
+        <span class="input-group-text bg-dark text-light" id="basic-addon1">Data Urodzenia</span>
+        <input type="date" name="birth_date" data-format="YYYY-MM-DD" class="form-control bg-dark text-light"
+            placeholder="Data Urodzenia" aria-label="Data Urodzenia" aria-describedby="basic-addon1">
+    </div>
+
+    <div class="input-group mb-3">
+        <span class="input-group-text bg-dark text-light" id="basic-addon1">Data Przyjazdu</span>
+        <input type="date" name="arrival_date" data-format="YYYY-MM-DD" class="form-control bg-dark text-light"
             placeholder="Data Przyjazdu" aria-label="Data Przyjazdu" aria-describedby="basic-addon1">
     </div>
 
     <div class="input-group mb-3">
-        <span class="input-group-text" id="basic-addon1">Data Odjazdu</span>
-        <input type="date" name="departure_date" data-format="YYYY-MM-DD" class="form-control"
+        <span class="input-group-text bg-dark text-light" id="basic-addon1">Data Odjazdu</span>
+        <input type="date" name="departure_date" data-format="YYYY-MM-DD" class="form-control bg-dark text-light"
             placeholder="Data Odjazdu" aria-label="Data Odjazdu" aria-describedby="basic-addon1">
     </div>
 
     <div class="input-group mb-3">
-        <span class="input-group-text" id="basic-addon1">Email</span>
-        <input type="text" name="email" class="form-control" placeholder="" aria-label="Nazwisko"
+        <span class="input-group-text bg-dark text-light" id="basic-addon1">Email</span>
+        <input type="text" name="email" class="form-control bg-dark text-light" placeholder="" aria-label="Nazwisko"
             aria-describedby="basic-addon1">
     </div>
 
     <div class="input-group mb-3">
-        <span class="input-group-text" id="addon-wrapping">Wybierz Pokój</span>
-        <select name="room_number">
+        <span class="input-group-text bg-dark text-light" id="addon-wrapping">Wybierz Pokój</span>
+        <select name="room_number" class="form-control bg-dark text-light">
             <option value="100">100</option>
             <option value="101">101</option>
             <option value="102">102</option>
