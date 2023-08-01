@@ -15,14 +15,6 @@ class rooms(db.Model):
     guests_capacity = db.Column(db.Integer, nullable=False)
 
 
-class previous_reservations(db.Model):
-    reservation_number = db.Column(db.Integer, primary_key=True)
-    room_number = db.Column(db.Integer, nullable=False)
-    guest_id = db.Column(db.Integer, nullable=False)
-    arrival_date = db.Column(db.Date, nullable=False)
-    departure_date = db.Column(db.Date, nullable=False)
-
-
 class guests(db.Model):
     guest_id = db.Column(db.Integer, primary_key=True)
     first_name = db.Column(db.String(50), nullable=False)
@@ -33,6 +25,14 @@ class guests(db.Model):
 
 
 class reservations(db.Model):
+    reservation_number = db.Column(db.Integer, primary_key=True)
+    room_number = db.Column(db.Integer, nullable=False)
+    guest_id = db.Column(db.Integer, nullable=False)
+    arrival_date = db.Column(db.Date, nullable=False)
+    departure_date = db.Column(db.Date, nullable=False)
+
+
+class previous_reservations(db.Model):
     reservation_number = db.Column(db.Integer, primary_key=True)
     room_number = db.Column(db.Integer, nullable=False)
     guest_id = db.Column(db.Integer, nullable=False)
@@ -118,23 +118,36 @@ def sikuel():
         departure_date = request.form["departure_date"]
         email = request.form["email"]
         room_number = request.form["room_number"]
-        # Create and add the new Guest to the database
-        new_guest = guests(
-            first_name=name,
-            last_name=surname,
-            birth_date=birth_date,
-            email=email,
-        )
-        db.session.add(new_guest)
-        db.session.commit()
+
+        # Sprawdź, czy gość już istnieje w bazie na podstawie danych identyfikujących (imię, nazwisko, data urodzenia, email).
+        existing_guest = guests.query.filter_by(
+            first_name=name, last_name=surname, birth_date=birth_date, email=email
+        ).first()
+
+        if existing_guest:
+            # Jeśli gość już istnieje, zaktualizuj liczbę wizyt o 1.
+            existing_guest.number_of_visits += 1
+        else:
+            # Jeśli gość nie istnieje, utwórz nowego gościa i zapisz go w bazie.
+            new_guest = guests(
+                first_name=name,
+                last_name=surname,
+                birth_date=birth_date,
+                email=email,
+                number_of_visits=1,
+            )
+            db.session.add(new_guest)
+
+        # Utwórz rezerwację i zapisz ją w bazie.
         new_reservation = reservations(
             room_number=room_number,
             arrival_date=arrival_date,
             departure_date=departure_date,
-            guest_id=new_guest.guest_id,
+            guest_id=existing_guest.guest_id if existing_guest else new_guest.guest_id,
         )
-
         db.session.add(new_reservation)
+
+        # Zatwierdź zmiany w bazie danych.
         db.session.commit()
 
     return render_template("orders.html")
