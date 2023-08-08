@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request, url_for
 from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy import and_
 from datetime import date
 
 app = Flask(__name__)
@@ -124,6 +125,20 @@ def sikuel():
             first_name=name, last_name=surname, birth_date=birth_date, email=email
         ).first()
 
+        conflicting_reservations = reservations.query.filter(
+            and_(
+                reservations.room_number == room_number,
+                reservations.arrival_date <= departure_date,
+                reservations.departure_date >= arrival_date,
+            )
+        ).all()
+
+        if conflicting_reservations:
+            # Pokój jest już zajęty w tym okresie.
+            return render_template(
+                "orders.html", message="Pokój jest już zajęty w tym okresie."
+            )
+
         if existing_guest:
             # Jeśli gość już istnieje, zaktualizuj liczbę wizyt o 1.
             existing_guest.number_of_visits += 1
@@ -137,6 +152,7 @@ def sikuel():
                 number_of_visits=1,
             )
             db.session.add(new_guest)
+            db.session.commit()
 
         # Utwórz rezerwację i zapisz ją w bazie.
         new_reservation = reservations(
